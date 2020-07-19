@@ -33,6 +33,21 @@ const { formatUser } = require('./_format')
     return formatRes
  }
 
+ /**
+  * 创建用户
+  * @param {*} param0 
+  */
+ async function createUser({userName, password, gender = 3, nickName}) {
+    const result  = await User.create({
+        userName,
+        password,
+        nickName: nickName ? nickName : userName,
+        gender
+    })
+    return result.dataValues
+ }
+
  module.exports = {
-     getUserInfo
+     getUserInfo,
+     createUser
  }

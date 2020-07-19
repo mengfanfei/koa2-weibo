@@ -23,6 +23,10 @@
         errno: 10005,
         message: '您尚未登录'
      },
+     uploadFileSizeFailInfo: {
+        errno: 10007,
+        message: '上传文件过大'
+     },
     jsonSchemaFileInfo: {
         errno: 10009,
         message: '数据格式校验错误'

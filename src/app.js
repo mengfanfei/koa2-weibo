@@ -1,3 +1,4 @@
+const path = require('path')
 const Koa = require('koa')
 const app = new Koa()
 const views = require('koa-views')
@@ -13,6 +14,7 @@ const { isProd } = require('./utils/env')
 const errorViewRouter = require('./routes/view/error')
 const index = require('./routes/index')
 const user = require('./routes/view/user')
+const utilsApiRouter = require('./routes/api/utils')
 const userApiRouter = require('./routes/api/user')
 const { SESSION_SECRET_KEY } = require('./conf/secretKeys')
 
@@ -32,6 +34,7 @@ app.use(bodyparser({
 app.use(json())
 app.use(logger())
 app.use(require('koa-static')(__dirname + '/public'))
+app.use(require('koa-static')(path.join(__dirname, '..', 'uploadFiles')))
 
 app.use(views(__dirname + '/views', {
   extension: 'ejs'
@@ -62,6 +65,7 @@ app.use(session({
 // routes
 app.use(index.routes(), index.allowedMethods())
 app.use(user.routes(), user.allowedMethods())
+app.use(utilsApiRouter.routes(), utilsApiRouter.allowedMethods())
 app.use(userApiRouter.routes(), userApiRouter.allowedMethods())
 app.use(errorViewRouter.routes(), errorViewRouter.allowedMethods())
 

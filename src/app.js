@@ -12,7 +12,8 @@ const { isProd } = require('./utils/env')
 
 const errorViewRouter = require('./routes/view/error')
 const index = require('./routes/index')
-const users = require('./routes/users')
+const user = require('./routes/view/user')
+const userApiRouter = require('./routes/api/user')
 
 // error handler
 let onerrorConf = {}
@@ -59,7 +60,8 @@ app.use(session({
 
 // routes
 app.use(index.routes(), index.allowedMethods())
-app.use(users.routes(), users.allowedMethods())
+app.use(user.routes(), user.allowedMethods())
+app.use(userApiRouter.routes(), userApiRouter.allowedMethods())
 app.use(errorViewRouter.routes(), errorViewRouter.allowedMethods())
 
 // error-handling

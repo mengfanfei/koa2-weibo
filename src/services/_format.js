@@ -4,8 +4,8 @@
 const { DEAULT_PICTURE } = require('../conf/constant')
 
  function _formatUserPicture(obj) {
-     if (obj.pictrue == null) {
-         obj.pictrue = DEAULT_PICTURE
+     if (obj.picture == null) {
+         obj.picture = DEAULT_PICTURE
      }
      return obj
  }

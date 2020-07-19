@@ -2,9 +2,9 @@
  * user controller
  */
 
-const { getUserInfo, createUser } = require("../services/user")
+const { getUserInfo, createUser, deleteUser } = require("../services/user")
 const { SuccessModel, ErrorModel } = require("../model/ResModel")
-const { registerUserNameNotExistInfo, registerUserNameExistInfo, registerFailInfo, loginFailInfo } = require("../model/ErrorInfo")
+const { registerUserNameNotExistInfo, registerUserNameExistInfo, registerFailInfo, loginFailInfo, deleteUserFailInfo } = require("../model/ErrorInfo")
 const doCrypto = require("../utils/cryp")
 
  /**
@@ -64,8 +64,18 @@ const doCrypto = require("../utils/cryp")
     return new SuccessModel({data: '登录成功'})
  }
 
+ async function deleteCurUser(userName) {
+    const result = await deleteUser(userName)
+    if (result) {
+        return new SuccessModel({data: '删除用户成功'})
+    } else {
+        return new ErrorModel(deleteUserFailInfo)
+    }
+ }
+
  module.exports = {
      isExist,
      register,
-     login
+     login,
+     deleteCurUser
  }

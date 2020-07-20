@@ -16,6 +16,7 @@ const index = require('./routes/index')
 const user = require('./routes/view/user')
 const utilsApiRouter = require('./routes/api/utils')
 const userApiRouter = require('./routes/api/user')
+const blogApiRouter = require('./routes/api/blog')
 const { SESSION_SECRET_KEY } = require('./conf/secretKeys')
 
 // error handler
@@ -65,6 +66,7 @@ app.use(session({
 // routes
 app.use(index.routes(), index.allowedMethods())
 app.use(user.routes(), user.allowedMethods())
+app.use(blogApiRouter.routes(), blogApiRouter.allowedMethods())
 app.use(utilsApiRouter.routes(), utilsApiRouter.allowedMethods())
 app.use(userApiRouter.routes(), userApiRouter.allowedMethods())
 app.use(errorViewRouter.routes(), errorViewRouter.allowedMethods())

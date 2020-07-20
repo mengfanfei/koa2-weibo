@@ -4,6 +4,7 @@
  */
 
 const { ErrorModel } = require("../model/ResModel")
+const { loginCheckFailInfo } = require('../model/ErrorInfo')
 
 
  /**
